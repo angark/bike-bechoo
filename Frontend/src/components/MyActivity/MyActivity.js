@@ -17,7 +17,7 @@ useEffect(() => {
   const fetchPosts = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:8000/api/post/my-posts", {
+      const res = await axios.get("https://bike-bechoo-6.onrender.com/api/post/my-posts", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPosts(res.data || []);
@@ -31,7 +31,7 @@ useEffect(() => {
   if (!window.confirm("Are you sure you want to delete this post?")) return;
   try {
     const token = localStorage.getItem("token");
-    await axios.delete(`http://localhost:8000/api/post/${postId}`, {
+    await axios.delete(`https://bike-bechoo-6.onrender.com/api/post/${postId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
 
