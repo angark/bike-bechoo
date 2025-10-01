@@ -198,7 +198,7 @@ const Navbar = () => {
               {user ? (
                 <button className="popup-login-btn" onClick={handleLogout}>Logout</button>
               ) : (
-                <NavLink to="http://localhost:8000/auth/google">
+                <NavLink to="https://bike-bechoo-6.onrender.com/auth/google">
                   <button className="popup-login-btn">Login</button>
                 </NavLink>
               )}
