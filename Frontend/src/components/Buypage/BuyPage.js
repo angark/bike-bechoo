@@ -383,7 +383,7 @@ const BuyPage = ({ filters }) => {
                         View Contact
                       </button>
                     ) : (
-                      <a href="http://localhost:8000/auth/google">
+                      <a href="https://bike-bechoo-6.onrender.com/auth/google">
                         <button className="contact-btn login-button">
                           Login to view contact
                         </button>
