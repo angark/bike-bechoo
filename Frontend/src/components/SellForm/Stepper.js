@@ -37,7 +37,7 @@ const Stepper = ({ step, setStep, validateStep}) => {
   };
 
   const handleContinueLogin = () => {
-    window.location.href = "http://localhost:8000/auth/google"; // your login route
+    window.location.href = "https://bike-bechoo-6.onrender.com/auth/google"; // your login route
   };
 
   return (
