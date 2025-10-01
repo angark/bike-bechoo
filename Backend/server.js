@@ -1,0 +1,61 @@
+//server.js
+
+const express = require("express");
+const mongoose = require("mongoose");
+const passport = require("passport");
+const session = require("express-session");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const paymentRoutes = require("./routes/paymentRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
+const userRoutes = require("./routes/userRoutes");
+
+ // adjust path if need
+require("dotenv").config();
+
+const app = express();
+
+// Middleware
+app.use(express.json()); // ✅ Parse JSON
+app.use(bodyParser.json());
+app.use("/uploads", express.static("uploads"));
+
+// DB Connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log("MongoDB connected"))
+  .catch(err => console.log("MongoDB error:", err));
+
+// Session
+app.use(session({
+  secret: "secret",
+  resave: false,
+  saveUninitialized: false
+}));
+
+// Passport
+require("./config/googleStrategy")(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
+// CORS
+app.use(cors()); 
+
+// Routes
+app.use("/auth", require("./routes/authRoutes"));
+app.use("/api/post", require("./routes/sellRoutes"));
+app.use("/api/form", require("./routes/formRoutes"));
+app.use("/api/form", require("./routes/formDraft"));
+app.use("/api/user", userRoutes);
+app.use("/api/reviews", reviewRoutes);
+
+
+
+
+// ✅ Razorpay routes
+app.use("/api/payment", paymentRoutes);
+
+// Start Server
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

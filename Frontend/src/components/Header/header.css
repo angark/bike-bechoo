@@ -1,0 +1,184 @@
+/* Container centered & fully responsive */
+.header-container {
+  position: absolute; /* ✅ instead of absolute */
+  margin: 20px auto;
+  top: 375px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 20px 24px;
+  font-family: sans-serif;
+  border-radius: 16px;
+  width: 100%;
+  max-height: 800px;
+  overflow-y: auto; /* Scroll if too tall */
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+/* Navigation bar */
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 12px;
+  font-size: clamp(14px, 2vw, 18px);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Nav links */
+.nav-link {
+  font-weight: 600;
+  color: #555;
+  text-decoration: none;
+  padding: 6px 12px;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #4c26f8;
+}
+
+.nav-link.active {
+  color: #18297f;
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-color: #007bff;
+  left: 0;
+  bottom: -8px;
+  border-radius: 2px;
+}
+
+/* Filter section (Buy & Rent only) */
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+ 
+}
+
+.row {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+/* Form elements */
+/* Form elements */
+.dropdown,
+.search-input,
+.form-group input {
+  padding: 6px 10px;   /* ✅ reduced from 10px 12px */
+  border: 1px solid #ccc;
+  border-radius: 6px;  /* ✅ slightly smaller radius */
+  font-size: clamp(12px, 1.6vw, 14px);
+  flex: 1;
+  height: 36px;        /* ✅ force consistent height */
+  box-sizing: border-box;
+}
+
+.search-button {
+  padding: 6px 14px;   /* ✅ reduced button padding */
+  height: 36px;        /* ✅ same as inputs for alignment */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.form-group label {
+  font-size: clamp(12px, 1.8vw, 14px);
+  font-weight: 600;
+  color: #333;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: clamp(12px, 1.8vw, 14px);
+  align-self: flex-start;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .row {
+    flex-wrap: wrap;
+  }
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+  .header-container {
+    width: 100%;
+    padding: 16px;
+    margin-top: 60px;
+     /* ✅ Instead of top: */
+  }
+
+  
+
+  .search-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .nav-links {
+    
+    align-items: center;
+    gap: 6px;
+  }
+
+  .search-bar {
+    gap: 8px;
+  }
+}
+
+ @media (max-width: 2560px) {
+
+    .header-container {
+    width: 100%;
+    padding: 16px;
+    margin-top: 80px; /* ✅ Instead of top: */
+  }
+  .nav-links {
+    
+    align-items: center;
+    gap: 6px;
+  }
+
+  .search-bar {
+    gap: 8px;
+  }
+}

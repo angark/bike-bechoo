@@ -1,0 +1,245 @@
+/* =========================
+   Sell Page Base Layout
+========================= */
+.sell-page-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 20px;
+  flex-wrap: wrap; /* allow wrapping for smaller screens */
+}
+
+.form-step-container {
+  flex: 2;
+  background: rgba(255, 255, 255, 0.1);
+  margin-top: 50px;
+  padding: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #000;
+  transition: all 0.3s ease;
+  min-width: 280px;
+}
+
+.stepper-container {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 10px;
+  position: sticky;
+  height: fit-content;
+  min-width: 220px;
+}
+
+/* =========================
+   Step Labels
+========================= */
+.step-labels {
+  text-align: center;
+  margin-top: 8px;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* =========================
+   Form Card
+========================= */
+.form-card {
+  background: #fff;
+  padding: 20px;
+  max-width: 600px;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+img {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 100%; /* responsive images */
+  height: auto;
+}
+
+/* =========================
+   Buttons
+========================= */
+.continue-btn,
+.back-btn,
+.submit-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.continue-btn:hover {
+  background-color: #0056b3;
+}
+
+.back-btn {
+  background-color: brown;
+}
+.back-btn:hover {
+  background-color: black;
+}
+
+.submit-btn {
+  background-color: #007bff;
+}
+.submit-btn:hover {
+  background-color: #28a745;
+}
+
+/* =========================
+   Stepper Wrapper
+========================= */
+.form-stepper-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 20px;
+  flex-wrap: wrap; /* ensures responsiveness */
+}
+
+.sell-form-container {
+  flex: 1;
+}
+
+.stepper-wrapper {
+  margin-top: 30px;
+}
+
+.stepper-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+.stepper-step {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 2px solid #ccc;
+  transition: all 0.3s ease;
+  min-width: 80px;
+}
+
+.stepper-step.completed {
+  color: green;
+  border-bottom: 2px solid green;
+}
+
+.stepper-step.active {
+  font-weight: bold;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+
+.step-number {
+  font-size: 18px;
+}
+
+.step-label {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.stepper-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  flex-wrap: wrap; /* stack buttons on small screens */
+  gap: 10px;
+}
+
+.stepper-btn {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* =========================
+   Responsive Media Queries
+========================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .sell-page-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-step-container {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .stepper-container {
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+  }
+
+  .form-card {
+    padding: 15px;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 600px) {
+  .sell-page-container {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .form-step-container {
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  .stepper-container {
+    width: 100%;
+  }
+
+  .stepper-steps {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stepper-step {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .stepper-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .continue-btn,
+  .back-btn,
+  .submit-btn {
+    width: 100%; /* full width buttons for mobile */
+  }
+}

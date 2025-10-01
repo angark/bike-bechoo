@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+    background: url('/src/assets/bike.png') no-repeat center center;
+    background-size: cover;
+  }
+  
+  .left-side {
+    flex: 1;
+    padding: 20px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5); /* optional overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .left-side h1 {
+    font-size: 32px;
+    margin: 0 0 10px;
+  }
+  
+  .left-side h2 {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  
+  .left-side p {
+    font-size: 14px;
+    margin: 10px 0 20px;
+  }
+  
+  .left-side button {
+    background-color: #000000;
+    color: #fffbfb;
+    padding: 10px;
+    width: 200px;
+    max-width: 100%;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .left-side button:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .contact{
+    font-weight: 700;
+    font-size: 18px;
+    color: #ffffff;
+  }
+  
+  /* Tablet devices (>= 600px) */
+  @media (min-width: 600px) {
+    .container {
+      flex-direction: row;
+    }
+  
+    .left-side {
+      flex: 1;
+      padding: 40px;
+    }
+  
+    .left-side h1 {
+      font-size: 40px;
+    }
+  
+    .left-side h2 {
+      font-size: 24px;
+    }
+  
+    .left-side p {
+      font-size: 16px;
+    }
+  
+    .left-side button {
+      font-size: 16px;
+      width: 220px;
+    }
+  }
+  
+  /* Desktop devices (>= 1024px) */
+  @media (min-width: 1024px) {
+    .left-side {
+      flex: 1;
+      padding: 60px;
+    }
+  
+    .left-side h1 {
+      font-size: 48px;
+    }
+  
+    .left-side h2 {
+      font-size: 28px;
+    }
+  
+    .left-side p {
+      font-size: 18px;
+    }
+  
+    .left-side button {
+      font-size: 18px;
+      width: 250px;
+    }
+  }
+  

@@ -1,0 +1,236 @@
+/* === Rent Page Container === */
+.rent-page {
+  margin-top: 160px;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f7fafc;
+  
+}
+
+.rent-heading {
+  margin-top: 100px;
+  margin-bottom: 70px;
+  color: #0864e4;
+  font-weight: 700;
+}
+.scroll-container {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0; /* no extra padding */
+  margin: 0 0 10px 0; /* small space below heading */
+  line-height: 1.5; /* keep it tight */
+}
+.rent-subheading {
+  color: #3b82f6;
+  display: inline-block;
+  padding-left: 100%;
+  animation: ticker 20s linear infinite;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+@keyframes ticker {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* === Card === */
+.rent-card {
+  display: inline-flex;
+  width: 400px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-right: 20px;
+}
+
+.rent-card:hover {
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.rent-card.expanded {
+  flex-direction: column;
+  width: 400px; /* wider when expanded */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  cursor: default;
+}
+
+/* === Image Section === */
+.rent-image-section {
+  position: relative;
+  max-width: 400px;
+  height: 200px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.rent-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: height 0.3s ease;
+}
+
+.bike-image-section {
+  overflow: hidden; /* hides the overflow when zoomed */
+}
+.bike-image {
+  transition: transform 0.3s ease; /* smooth zoom */
+}
+
+.rent-image-section:hover .bike-image {
+  transform: scale(0.6);
+}
+.expanded-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.post-id-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+
+/* === Badge === */
+.badgerent {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #10b981;
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  z-index: 1;
+}
+
+/* === Info Section === */
+.rent-info {
+  padding: 15px;
+}
+
+.bike-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.bike-location {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+.bike-meta {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.bike-description {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 15px;
+}
+
+/* === Buttons === */
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-outline {
+  border: 1px solid #10b981;
+  background: transparent;
+  color: #10b981;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: #8b5cf6;
+  color: white;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;   /* ✅ keep background transparent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+
+.modal-box {
+ background:  #8b5cf6;
+ color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  width: 320px;
+  text-align: center;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.cancel-btn {
+  background: #ccc;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pay-btn {
+  background: #3399cc;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+/* === Mobile === */
+@media (max-width: 768px) {
+  .rent-page {
+    white-space: normal;
+    overflow-x: hidden;
+  }
+
+  .rent-card {
+    width: 100%;
+    margin: 0 auto 20px;
+  }
+}

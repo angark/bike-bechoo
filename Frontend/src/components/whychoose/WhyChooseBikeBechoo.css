@@ -1,0 +1,79 @@
+.why-container {
+  padding: 60px 20px;
+  background-color: #dee6eb;
+  color: #333;
+}
+
+.why-content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.why-text h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.highlight {
+  color: #6366f1; /* BikeBechoo red */
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feature-item {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.icon-circle {
+  width: 45px;
+  height: 45px;
+  background-color: #ffe5e5;
+  color: #6366f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.feature-item h3 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.feature-item p {
+  margin: 5px 0 0;
+  font-size: 15px;
+  color: #555;
+}
+
+.why-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.why-image img {
+  width: 80%;
+  max-height: 600px;
+  
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
