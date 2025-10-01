@@ -10,6 +10,8 @@ const paymentRoutes = require("./routes/paymentRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const userRoutes = require("./routes/userRoutes");
 
+
+
  // adjust path if need
 require("dotenv").config();
 
@@ -40,7 +42,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // CORS
-app.use(cors()); 
+app.use(cors({
+    origin: "https://www.bikebechoo.com",  // ✅ your frontend domain
+    credentials: true
+}));
 
 // Routes
 app.use("/auth", require("./routes/authRoutes"));
