@@ -35,7 +35,7 @@ const Step2_RC = ({ formData, setFormData, setStepValid }) => {
 
     try {
       const res = await axios.post(
-        "http://bike-bechoo-6.onrender.com/api/form/upload-rc-image",
+        "https://bike-bechoo-6.onrender.com/api/form/upload-rc-image",
         formDataUpload,
         {
           headers: {
