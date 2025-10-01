@@ -835,7 +835,7 @@ const SellPage = () => {
               <button
                 className="continue-btn"
                 onClick={() =>
-                  (window.location.href = "http://localhost:8000/auth/google")
+                  (window.location.href = "http://bike-bechoo-6.onrender.com/auth/google")
                 }
               >
                 Continue (Login)
