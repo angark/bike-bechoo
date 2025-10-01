@@ -21,7 +21,7 @@ router.get(
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
     const token = req.user.token;
-    res.redirect(`http://localhost:3000/auth-handler?token=${token}`);
+    res.redirect(`http://www.bikebechoo.com/auth-handler?token=${token}`);
   }
 );
 
