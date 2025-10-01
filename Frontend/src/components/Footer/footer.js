@@ -57,7 +57,7 @@ const Footer = () => {
               <a href="/Accessories">Accessories</a>
             </li>
             <li>
-              <a href="http://localhost:8000/auth/google">Login</a>
+              <a href="https://bike-bechoo-6.onrender.com/auth/google">Login</a>
             </li>
           </ul>
         </div>
