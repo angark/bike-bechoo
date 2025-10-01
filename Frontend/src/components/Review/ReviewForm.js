@@ -17,7 +17,7 @@ const ReviewForm = ({ onSubmit }) => {
   if (!formData.name || !formData.title || !formData.content) return;
 
   try {
-    const res = await fetch("http://localhost:8000/api/reviews", {
+    const res = await fetch("https://bike-bechoo-6.onrender.com/api/reviews", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
