@@ -56,6 +56,16 @@ app.use("/api/reviews", reviewRoutes);
 // ✅ Razorpay routes
 app.use("/api/payment", paymentRoutes);
 
-// Start Server
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => {
+    console.error("MongoDB connection error:", err);
+    process.exit(1); // Exit if DB fails
+  });
+
+// Start server (Render-ready)
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});
