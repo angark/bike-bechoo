@@ -18,7 +18,7 @@ router.get(
 // Callback from Google
 router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/" }),
+  passport.authenticate("google", { failureRedirect: "https://www.bikebechoo.com/" }),
   (req, res) => {
     const token = req.user.token;
     res.redirect(`https://www.bikebechoo.com/auth-handler?token=${token}`);
