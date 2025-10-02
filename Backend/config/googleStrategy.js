@@ -1,7 +1,4 @@
-// Backend/config/googleStrategy.js
-
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const jwt = require("jsonwebtoken");
 const User = require("../model/User");
 
 module.exports = (passport) => {
@@ -13,11 +10,12 @@ module.exports = (passport) => {
         callbackURL: "https://bike-bechoo-6.onrender.com/auth/google/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
-        console.log(profile)
         try {
+          // Check if user already exists
           let user = await User.findOne({ googleId: profile.id });
 
           if (!user) {
+            // Create new user
             user = await User.create({
               googleId: profile.id,
               name: profile.displayName,
@@ -26,14 +24,8 @@ module.exports = (passport) => {
             });
           }
 
-          const token = jwt.sign(
-            { id: user._id, name: user.name, email: user.email, image: user.image },
-            process.env.JWT_SECRET,
-            { expiresIn: "7d" }
-          );
-
-          // Send token via query param
-          return done(null, { token });
+          // Instead of returning a JWT, just return the user object
+          return done(null, user); // Passport stores this in session
         } catch (err) {
           return done(err, false);
         }
@@ -41,11 +33,18 @@ module.exports = (passport) => {
     )
   );
 
+  // Serialize user into session
   passport.serializeUser((user, done) => {
-    done(null, user);
+    done(null, user._id); // store only user ID in session
   });
 
-  passport.deserializeUser((obj, done) => {
-    done(null, obj);
+  // Deserialize user from session
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await User.findById(id);
+      done(null, user); // attach full user object to req.user
+    } catch (err) {
+      done(err, null);
+    }
   });
 };
