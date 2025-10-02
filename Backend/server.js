@@ -47,6 +47,18 @@ app.use(cors({
     credentials: true
 }));
 
+// If you use express-session:
+app.set('trust proxy', 1);  // important on Render
+app.use(session({
+  secret: process.env.JWT_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: true,   // true in production (HTTPS)
+    sameSite: "none"
+  }
+}));
+
 // Routes
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/api/post", require("./routes/sellRoutes"));
