@@ -35,7 +35,7 @@ app.use("/uploads", express.static("uploads"));
 // If you use express-session:
 app.set('trust proxy', 1);  // important on Render
 app.use(session({
-  secret: process.env.JWT_SECRET,
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
