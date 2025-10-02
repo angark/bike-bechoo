@@ -59,6 +59,7 @@ app.use("/api/form", require("./routes/formRoutes"));
 app.use("/api/form", require("./routes/formDraft"));
 app.use("/api/user", userRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/me", require("./routes/meRoute"));
 
 
 
