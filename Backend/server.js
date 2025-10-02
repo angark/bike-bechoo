@@ -18,6 +18,13 @@ require("dotenv").config();
 const app = express();
 
 // Middleware
+
+// CORS
+app.use(cors({
+    origin: "https://www.bikebechoo.com",  // ✅ your frontend domain
+    credentials: true
+}));
+
 app.use(express.json()); // ✅ Parse JSON
 
 app.use("/uploads", express.static("uploads"));
@@ -42,11 +49,7 @@ require("./config/googleStrategy")(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-// CORS
-app.use(cors({
-    origin: "https://www.bikebechoo.com",  // ✅ your frontend domain
-    credentials: true
-}));
+
 
 
 // Routes
