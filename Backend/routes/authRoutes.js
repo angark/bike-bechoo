@@ -21,7 +21,7 @@ router.get(
   passport.authenticate("google", { failureRedirect: "https://www.bikebechoo.com/" }),
   (req, res) => {
     const token = req.user.token;
-    res.redirect(`https://www.bikebechoo.com/auth-handler?token=${token}`);
+    res.redirect(`https://www.bikebechoo.com/auth-handler`);
   }
 );
 
