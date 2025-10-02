@@ -19,21 +19,22 @@ const app = express();
 
 // Middleware
 app.use(express.json()); // ✅ Parse JSON
-app.use(bodyParser.json());
+
 app.use("/uploads", express.static("uploads"));
 
-// DB Connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log("MongoDB connected"))
-  .catch(err => console.log("MongoDB error:", err));
+
 
 // Session
+// If you use express-session:
+app.set('trust proxy', 1);  // important on Render
 app.use(session({
-  secret: "secret",
+  secret: process.env.JWT_SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    secure: true,   // true in production (HTTPS)
+    sameSite: "none"
+  }
 }));
 
 // Passport
@@ -47,17 +48,6 @@ app.use(cors({
     credentials: true
 }));
 
-// If you use express-session:
-app.set('trust proxy', 1);  // important on Render
-app.use(session({
-  secret: process.env.JWT_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: true,   // true in production (HTTPS)
-    sameSite: "none"
-  }
-}));
 
 // Routes
 app.use("/auth", require("./routes/authRoutes"));
