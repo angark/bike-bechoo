@@ -23,6 +23,7 @@ function getCookie(name) {
 }
 
 function removeCookie(name, domain) {
+  // set cookie expired
   const domainPart = domain ? `;domain=${domain}` : "";
   document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/${domainPart}`;
 }
@@ -35,29 +36,19 @@ const Navbar = () => {
   const [lang, setLang] = useState("en");
   const observerRef = useRef(null);
 
-  // Load user from localStorage
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) setUser(JSON.parse(storedUser));
 
-    // Listen for login event from AuthHandler
-    const handleLogin = () => {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) setUser(JSON.parse(storedUser));
-    };
-    window.addEventListener("userLoggedIn", handleLogin);
-
-    return () => window.removeEventListener("userLoggedIn", handleLogin);
-  }, []);
-
-  // Language & Google Translate handling
-  useEffect(() => {
+    // If cookie already present, set initial lang
     const cookie = getCookie("googtrans");
     if (cookie) {
+      // cookie format: /source/target
       const parts = cookie.split("/");
       if (parts.length >= 3) setLang(parts[2] || "en");
     }
 
+    // MutationObserver to detect when Google injects the select
     const observer = new MutationObserver(() => {
       const select = document.querySelector(".goog-te-combo");
       if (select && select.value && select.value !== lang) {
@@ -68,6 +59,7 @@ const Navbar = () => {
     observer.observe(document.body, { childList: true, subtree: true });
     observerRef.current = observer;
 
+    // also do a delayed check
     const t = setTimeout(() => {
       const select = document.querySelector(".goog-te-combo");
       if (select) setLang(select.value || (getCookie("googtrans")?.split("/")?.[2] ?? "en"));
@@ -85,12 +77,20 @@ const Navbar = () => {
   };
 
   const changeLanguage = (targetLang) => {
+    // 1) Try to change the injected select (fast, no reload)
     const select = document.querySelector(".goog-te-combo");
     if (select) {
       try {
         select.value = targetLang;
+        // dispatch events (some browsers need different events)
         const event = new Event("change", { bubbles: true });
         select.dispatchEvent(event);
+        // older event fallback
+        try {
+          const ev = document.createEvent("HTMLEvents");
+          ev.initEvent("change", true, false);
+          select.dispatchEvent(ev);
+        } catch (_) {}
         setLang(targetLang);
         return;
       } catch (err) {
@@ -98,17 +98,34 @@ const Navbar = () => {
       }
     }
 
-    const cookieValue = `/en/${targetLang}`;
-    setCookie("googtrans", cookieValue, 365);
+    // 2) Fallback: set googtrans cookie and reload the page.
+    // cookie value format: /SOURCE/TARGET (SOURCE usually en)
     try {
-      const host = window.location.hostname;
-      if (host && host !== "localhost" && host.indexOf(".") !== -1) {
-        const parts = host.split(".");
-        const domain = "." + parts.slice(-2).join(".");
-        setCookie("googtrans", cookieValue, 365, domain);
+      const cookieValue = `/en/${targetLang}`;
+
+      // set cookie for current hostname (path=/)
+      setCookie("googtrans", cookieValue, 365);
+
+      // also try to set a domain-level cookie (helps some deployments)
+      try {
+        const host = window.location.hostname;
+        if (host && host !== "localhost" && host.indexOf(".") !== -1) {
+          const parts = host.split(".");
+          const domain = "." + parts.slice(-2).join(".");
+          setCookie("googtrans", cookieValue, 365, domain);
+        }
+      } catch (e) {
+        // ignore domain cookie errors
       }
-    } catch (e) {}
-    setTimeout(() => window.location.reload(), 200);
+
+      // small delay to ensure cookie is written
+      setTimeout(() => {
+        // reload so Google Translate picks up the cookie
+        window.location.reload();
+      }, 200);
+    } catch (err) {
+      console.error("Translation fallback failed:", err);
+    }
   };
 
   const togglePopup = () => setShowPopup((p) => !p);
@@ -125,77 +142,77 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* Logo */}
+        {/* logo */}
         <div className="logo-section">
           <img src={logo} alt="logo" className="logo" />
         </div>
 
-        {/* Center Links */}
-        <div className={`nav-linkss ${showMobileMenu ? "show" : ""}`}>
-          <NavLink to="/buy" className="nav-links">Home</NavLink>
-          <NavLink to="/about" className="nav-links">About</NavLink>
-          <NavLink to="/contact" className="nav-links">Contact</NavLink>
-          <NavLink to="/dealers" className="nav-links">Dealers</NavLink>
-          <NavLink to="/accessories" className="nav-links">Accessories</NavLink>
+        {/* center links */}
+        {/* All Links (desktop visible, mobile dropdown via .show) */}
+<div className={`nav-linkss ${showMobileMenu ? "show" : ""}`}>
+  <NavLink to="/buy" className="nav-links">Home</NavLink>
+  <NavLink to="/about" className="nav-links">About</NavLink>
+  <NavLink to="/contact" className="nav-links">Contact</NavLink>
+  <NavLink to="/dealers" className="nav-links">Dealers</NavLink>
+  <NavLink to="/accessories" className="nav-links">Accessories</NavLink>
 
-          <div id="google_translate_element" style={{ display: "none" }} />
-          <div className="language-switcher">
-            <button onClick={toggleLanguage} className="lang-btn">
-              🌐 {lang === "hi" ? "हिंदी" : "English"}
-            </button>
-          </div>
-        </div>
+  <div id="google_translate_element" style={{ display: "none" }} />
+  <div className="language-switcher">
+    <button onClick={toggleLanguage} className="lang-btn">
+      🌐 {lang === "hi" ? "हिंदी" : "English"}
+    </button>
+  </div>
+</div>
 
-        {/* Right Section */}
+
+        {/* right section */}
         <button
-          className={`mobile-menu-btn ${showMobileMenu ? "rotate" : ""}`}
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-        >
-          {showMobileMenu ? <X className="icon-fade" /> : <Menu className="icon-fade" />}
-        </button>
+  className={`mobile-menu-btn ${showMobileMenu ? "rotate" : ""}`}
+  onClick={toggleMobileMenu}
+  aria-label="Toggle menu"
+>
+  {showMobileMenu ? <X className="icon-fade" /> : <Menu className="icon-fade" />}
+</button>
 
-        <button onClick={togglePopup} className="login-btn" aria-label="User menu">
-          {user && user.image ? (
-            <img src={user.image} alt="avatar" className="avatar-img" />
-          ) : <div className="avatar">U</div>}
-        </button>
 
-        {showPopup && (
-          <div className="login-popup">
-            <div className="popup-header">
-              {user?.image ? (
-                <img src={user.image} alt="user" className="popup-avatar-img" />
-              ) : <div className="popup-avatar">U</div>}
-              <div className="popup-info">
-                <div className="popup-name">{user?.name || "Guest"}</div>
-                <div className="popup-email">{user?.email || "No Email"}</div>
+          <button onClick={togglePopup} className="login-btn" aria-label="User menu">
+            {user && user.imageUrl ? (
+              <img src={user.imageUrl} alt="avatar" className="avatar-img" />
+            ) : <div className="avatar">U</div>}
+          </button>
+
+          {showPopup && (
+            <div className="login-popup">
+              <div className="popup-header">
+                {user?.image ? <img src={user.image} alt="user" className="popup-avatar-img" /> : <div className="popup-avatar">U</div>}
+                <div className="popup-info">
+                  <div className="popup-name">{user?.name || "Guest"}</div>
+                  <div className="popup-email">{user?.email || "No Email"}</div>
+                </div>
               </div>
-            </div>
 
-            <div className="myactivity">
-              <button className="nav-myactivity" onClick={toggleActivity}>MY ACTIVITY</button>
-            </div>
-
-            {user ? (
-              <button className="popup-login-btn" onClick={handleLogout}>Logout</button>
-            ) : (
-              <button
-                className="popup-login-btn"
-                onClick={() => window.location.href = "https://bike-bechoo-6.onrender.com/auth/google"}
-              >
-                Login
-              </button>
-            )}
-
-            {showActivity && (
-              <div style={{ marginTop: 10, maxHeight: 300, overflowY: "auto" }}>
-                <MyActivity />
+              <div className="myactivity">
+                <button className="nav-myactivity" onClick={toggleActivity}>MY ACTIVITY</button>
               </div>
-            )}
-          </div>
-        )}
-      </div>
+
+              {user ? (
+                <button className="popup-login-btn" onClick={handleLogout}>Logout</button>
+              ) : (
+                <NavLink to="https://bike-bechoo-6.onrender.com/auth/google">
+                  <button className="popup-login-btn">Login</button>
+                </NavLink>
+              )}
+
+              {showActivity && (
+                <div style={{ marginTop: 10, maxHeight: 300, overflowY: "auto" }}>
+                  <MyActivity />
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      
+      
     </nav>
   );
 };
