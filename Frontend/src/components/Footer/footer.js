@@ -107,13 +107,21 @@ const Footer = () => {
             </li>
              <li>
               <HashLink
-  smooth
-  to="/bikevaluation#valuationSection"
-  className="text-sm text-gray-500 hover:text-red-500"
->
-  Bike valuation
-</HashLink>
-
+               smooth
+               to="/bikevaluation#valuationSection"
+               className="text-sm text-gray-500 hover:text-red-500"
+              >
+               Bike valuation
+              </HashLink>
+               </li>
+               <li>
+              <HashLink
+                smooth
+                to="/Privacy&policy#Privacy&policySection"
+                className="text-sm text-gray-500 hover:text-red-500"
+              >
+                Privacy & policy
+              </HashLink>
             </li>
           </ul>
         </div>
