@@ -19,6 +19,11 @@ const app = express();
 app.use(express.json()); // ✅ Parse JSON
 app.use(bodyParser.json());
 app.use("/uploads", express.static("uploads"));
+// CORS
+app.use(cors({
+    origin: "https://www.bikebechoo.com",
+    credentials: true
+}));
 
 // DB Connection
 mongoose.connect(process.env.MONGO_URI, {
@@ -39,8 +44,7 @@ require("./config/googleStrategy")(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-// CORS
-app.use(cors()); 
+
 
 // Routes
 app.use("/auth", require("./routes/authRoutes"));
