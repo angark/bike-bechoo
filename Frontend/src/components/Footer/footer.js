@@ -117,7 +117,7 @@ const Footer = () => {
                <li>
               <HashLink
                 smooth
-                to="/Privacy&policy#Privacy&policySection"
+                to="/PrivacyPolicy#privacySection"
                 className="text-sm text-gray-500 hover:text-red-500"
               >
                 Privacy & policy
