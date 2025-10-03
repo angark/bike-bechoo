@@ -15,6 +15,7 @@ import LaunchingSoon from "./components/Launch/LaunchingSoon";
 import WhyChooseBikeBechoo from "./components/whychoose/whychoose";
 import HowItWorks from "./components/How/HowItWorks";
 import BikeValuationForm from "./components/Bikevaluationform/Bikevaluation";
+import PrivacyPolicy  from  "./components/Privacy/Privacy";
 import Gernalsafety from "./components/Safety/Gernalsafety";
 import ReviewSection from "./components/Review/ReviewSection";
 import AuthHandler from "./components/AuthHandler/AuthHandler";
@@ -69,6 +70,7 @@ const App = () => {
                 <WhyChooseBikeBechoo />
                 <Gernalsafety />
                 <ReviewSection />
+                <PrivacyPolicy />
               </main>
               
               <Footer />
