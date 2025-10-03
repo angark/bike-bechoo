@@ -18,10 +18,10 @@ router.get(
 // Callback from Google
 router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "https://www.bikebechoo.com/" }),
+  passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
     const token = req.user.token;
-    res.redirect(`https://www.bikebechoo.com/auth-handler`);
+    res.redirect(`http://www.bikebechoo.com/auth-handler?token=${token}`);
   }
 );
 
