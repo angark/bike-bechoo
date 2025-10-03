@@ -61,6 +61,7 @@ const App = () => {
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/terms" element={<TermsAndConditions />} />
                   <Route path="/bikevaluation" element={<BikeValuationForm />} />
+                  <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
                   <Route path="/auth-handler" element={<AuthHandler />} />
                   
                 </Routes>
@@ -70,7 +71,7 @@ const App = () => {
                 <WhyChooseBikeBechoo />
                 <Gernalsafety />
                 <ReviewSection />
-                <PrivacyPolicy />
+                
               </main>
               
               <Footer />
