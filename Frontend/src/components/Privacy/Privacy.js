@@ -17,7 +17,7 @@ const PrivacyPolicy = () => {
       <h1 className="terms-title">PRIVACY POLICY – BIKE BECHOO™</h1>
 
       <div className="terms-section">
-        <h2>1. What Do We Do With Your Information?</h2>
+        <h2> SECTION 1 - What Do We Do With Your Information?</h2>
         <p>
           When you create an account, post a listing, or purchase/rent a
           motorbike through Bike Bechoo™, we collect personal information such
@@ -36,7 +36,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="terms-section">
-        <h2>2. Consent</h2>
+        <h2> SECTION 2 - Consent</h2>
         <p>
           How do you give consent? By providing your personal information to
           post a listing, make a purchase, rent a bike, or complete a
@@ -62,7 +62,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="terms-section">
-        <h2>3. Disclosure</h2>
+        <h2> SECTION 3 - Disclosure</h2>
         <p>
           We may disclose your personal information if we are required by law to
           do so or if you violate our Terms of Service.
@@ -70,7 +70,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="terms-section">
-        <h2>4. Payment</h2>
+        <h2> SECTION 4 - Payment</h2>
         <p>
           Payments on Bike Bechoo™ are processed securely via Razorpay. Neither
           we nor Razorpay store your card details on our servers.
@@ -97,7 +97,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="terms-section">
-        <h2>5. Third-Party Services</h2>
+        <h2>SECTION 5 - Third-Party Services</h2>
         <p>
           Our service may include integrations with third-party providers such
           as payment gateways, SMS/email service providers, or verification
@@ -122,7 +122,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="terms-section">
-        <h2>6. Security</h2>
+        <h2>SECTION 6 - Security</h2>
         <p>
           We take reasonable precautions and follow industry standards to ensure
           your personal information is not misused, accessed, disclosed,
@@ -131,7 +131,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="terms-section">
-        <h2>7. Cookies</h2>
+        <h2>SECTION 7 - Cookies</h2>
         <p>
           We use cookies to maintain session of your user. It is not used to
           personally identify you on other websites.
@@ -139,7 +139,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="terms-section">
-        <h2>8. Age of Consent</h2>
+        <h2> SECTION 8 - Age of Consent</h2>
         <p>
           By using Bike Bechoo™, you confirm that you are at least 18 years old,
           or that you have provided consent for any of your minor dependents to
@@ -148,7 +148,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="terms-section">
-        <h2>9. Changes to This Privacy Policy</h2>
+        <h2>SECTION 9 - Changes to This Privacy Policy</h2>
         <p>
           We may update this Privacy Policy at any time. Updates will be posted
           on this page, and significant changes will be notified to you.
@@ -161,7 +161,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="terms-section">
-        <h2>10. Questions and Contact Information</h2>
+        <h2>SECTION 10 - Questions and Contact Information</h2>
         <p>
           For access, correction, or deletion of your personal data, or to
           register a complaint, please contact our Privacy Compliance Officer
